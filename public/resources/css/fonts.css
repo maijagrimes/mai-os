@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Garamond';
+    src: url('../fonts/apple_garamond/AppleGaramond-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Chicago';
+    src: url('../fonts/ChiKareGo2.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Geneva';
+    src: url('../fonts/FindersKeepers.ttf');
+}
