@@ -176,11 +176,11 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
     function SettingsContent({ openWindow, setWallpaper }) {
     const wallpapers = [
-        { src: "/src/assets/images/Strawberry-Parabola.jpg",       alt: "Pink" },
-        { src: "/src/assets/images/Tangerine-Fusion.jpg",    alt: "Orange" },
-        { src: "/src/assets/images/Lime-Horizon.jpg", alt: "Green" },
-        { src: "/src/assets/images/Grape-Mission.jpg",   alt: "Purple" },
-        { src: "/src/assets/images/Blueberry-Union.jpg",   alt: "Blue" },
+        { src: "/resources/images/Strawberry-Parabola.jpg",       alt: "Pink" },
+        { src: "/resources/images/Tangerine-Fusion.jpg",    alt: "Orange" },
+        { src: "/resources/images/Lime-Horizon.jpg", alt: "Green" },
+        { src: "/resources/images/Grape-Mission.jpg",   alt: "Purple" },
+        { src: "/resources/images/Blueberry-Union.jpg",   alt: "Blue" },
     ];
 
     return (
@@ -299,7 +299,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
     const [selectedIcon, setSelectedIcon] = useState(null);
     const [appleOpen, setAppleOpen] = useState(false);
     const [clock, setClock] = useState("");
-    const [wallpaper, setWallpaper] = useState("/src/assets/images/Strawberry-Parabola.jpg");
+    const [wallpaper, setWallpaper] = useState("/resources/images/Strawberry-Parabola.jpg");
     const [cursorStyle, setCursorStyle] = useState("/resources/cursors/windows-xp-silver-remastered-/XP Normal (Blue Flower).cur");
     const zCounter = useRef(60);
 
