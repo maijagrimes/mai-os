@@ -17,7 +17,7 @@
     gap: 17px; width: 350px;
 }
 
-.user-box:hover {
+.user-b:hover {
     background-color: rgb(239, 237, 237);
     border-bottom: solid 1px grey;
 }
@@ -25,7 +25,8 @@
 /* ── BOOT ── */
 .maios-boot {
     position: fixed; inset: 0;
-    background: #f59fe6;
+    background: url("/resources/images/Strawberry-Parabola.jpg");
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;

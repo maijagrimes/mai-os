@@ -56,14 +56,14 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
                 <div className="login-box">
                     <img src="/resources/favicons/CompactDisc.ico" style={{ width: 40, marginBottom: -6 }} alt="logo" />
-                    <div style={{ fontSize: 38, fontFamily: "Garamond Light", color: "#000", letterSpacing: -1 }}>
+                    <div style={{ fontSize: 38, fontFamily: "Garamond Light", color: "#000", letterSpacing: -1}}>
                         Welcome to Mai OS
                     </div>
 
                     {/* user list */}
-                    <div style={{
+                    <div className="user-list" style={{
                         width: 230, height: 200 , border: "3px solid #d04ea9",
-                        background: "#fff", fontFamily: "Chicago, monospace", fontSize: 22,
+                        background: "#fff", fontFamily: "Chicago, monospace", fontSize: 22
                     }}>
                         <div className="user-b"
                         onClick={onLogin}
