@@ -64,6 +64,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
                     <div className="user-list" style={{
                         width: 230, height: 200 , border: "3px solid #d04ea9",
                         background: "#fff", fontFamily: "Chicago, monospace", fontSize: 22
+                        
                     }}>
                         <div className="user-b"
                         onClick={onLogin}
@@ -176,11 +177,11 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
     function SettingsContent({ openWindow, setWallpaper }) {
     const wallpapers = [
-        { src: "/resources/images/Strawberry-Parabola.jpg",       alt: "Pink" },
-        { src: "/resources/images/Tangerine-Fusion.jpg",    alt: "Orange" },
-        { src: "/resources/images/Lime-Horizon.jpg", alt: "Green" },
-        { src: "/resources/images/Grape-Mission.jpg",   alt: "Purple" },
-        { src: "/resources/images/Blueberry-Union.jpg",   alt: "Blue" },
+        { src: "/resources/images/Blueberry-Union.jpg",       alt: "Blue" },
+        { src: "/resources/images/Grape-Mission.jpg",    alt: "Purple" },
+        { src: "/resources/images/Lime-Horizon.jpg", alt: "Lime" },
+        { src: "/resources/images/Strawberry-Parabola.jpg",   alt: "Pink" },
+        { src: "/resources/images/Tangerine-Fusion.jpg",   alt: "Orange" },
     ];
 
     return (
@@ -516,10 +517,11 @@ import { useState, useEffect, useRef, useCallback } from "react";
         {(bootPhase === "booting" || bootPhase === "done") && (
             <div className={`maios-boot${bootPhase === "done" ? " fade-out" : ""}`}>
             <div className="boot-center">
-                <HappyMac />
-                <div className="boot-os-text">
-                Mai OS
-                <span className="boot-version">Version 1.0</span>
+                <div className="boot-center-inner">
+                    <img style={{maxWidth: 180}} src="/resources/images/mai-logo.jpg" alt="CD" />
+                    <div className="boot-os-text">
+                    Mai <span style={{color: "#e851a2"}}>OS</span> 1.0
+                    </div>
                 </div>
                 <div className="boot-progress-area">
                 <div className="boot-ext-label">{BOOT_EXTENSIONS[bootExtIdx]}</div>
