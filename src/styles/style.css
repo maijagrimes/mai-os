@@ -15,7 +15,6 @@
     padding: 24px 32px;
     display: flex; flex-direction: column; align-items: center;
     gap: 17px; width: 350px;
-
 }
 
 .user-box:hover {
@@ -84,7 +83,6 @@
 /* ── DESKTOP ── */
 .maios-desktop {
     position: fixed; inset: 0;
-    background: #f6c9eb;
     opacity: 0;
     transition: opacity 0.5s ease;
     display: flex;
@@ -110,14 +108,13 @@
     font-size: 18px; margin-right: 4px;
     padding: 0 6px; height: 22px;
     display: flex; align-items: center;
-    cursor: url(../../public/resources/cursors/windows-xp-silver-remastered-/Hand\ Select.cur), auto; color: #000;
 }
 .menubar-apple:hover, .menu-item:hover { background: #000; color: #fff; }
 .menu-item {
     padding: 0 8px; height: 22px;
     display: flex; align-items: center;
     font-family: 'Chicago', auto;
-    cursor: url("../../public/resources/cursors/windows-xp-silver-remastered-/Hand\ Select.cur"), auto; font-size: 14px; color: #000;
+    font-size: 14px; color: #000;
 }
 .menubar-right { margin-left: auto; font-size: 16px; color: #000; }
 
@@ -132,7 +129,7 @@
     z-index: 200;
     font-size: 12px;
 }
-.apple-menu-item { padding: 3px 20px 3px 8px; cursor: url(../../public/resources/cursors/windows-xp-silver-remastered-/Hand\ Select.cur), auto; border-bottom: 1px solid #ccc; display: flex; align-items: center; gap: 8px; }
+.apple-menu-item { padding: 3px 20px 3px 8px; border-bottom: 1px solid #ccc; display: flex; align-items: center; gap: 8px; }
 .apple-menu-item:hover { background: #000080; color: #fff; }
 .apple-menu-sep { height: 1px; background: #999; margin: 2px 0; }
 
@@ -144,7 +141,7 @@
     position: absolute;
     display: flex; flex-direction: column; align-items: center;
     gap: 1px; width: 72px;
-    cursor: url("../../public/resources/cursors/windows-xp-silver-remastered-/Hand\ Select.cur"), auto; padding: 4px; border-radius: 2px; z-index: 10;
+    padding: 4px; border-radius: 2px; z-index: 10;
 }
 .icon-img { width: 32px; height: 32px; font-size: 28px; display: flex; align-items: center; justify-content: center; }
 .icon-label {
@@ -154,7 +151,7 @@
     /*text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;*/
     max-width: 70px; word-break: break-word;
 }
-.desktop-icon.selected .icon-label { background: #000080; text-shadow: none; }
+.desktop-icon.selected .icon-label { background: #e8e8e8c2; text-shadow: none; }
 .desktop-icon:hover .icon-img { filter: brightness(0.75); }
 
 /* ── WINDOWS ── */
@@ -171,7 +168,7 @@
     height: 18px;
     /*background: repeating-linear-gradient(to right, #000 0px, #000 1px, #c0c0c0 1px, #c0c0c0 3px);*/
     display: flex; align-items: center;
-    padding: 2px 4px; cursor: url("../../public/resources/cursors/windows-xp-silver-remastered-/Move.cur"), auto; flex-shrink: 0; position: relative;
+    padding: 2px 4px; flex-shrink: 0; position: relative;
 }
 .maios-window.unfocused .window-titlebar {
     /*background: repeating-linear-gradient(to right, #888 0px, #888 1px, #c0c0c0 1px, #c0c0c0 3px);*/
@@ -182,7 +179,7 @@
     background: #c0c0c0;
     border: 1px solid #605f5f;
     box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
-    cursor: url(../../public/resources/cursors/windows-xp-silver-remastered-/Hand\ Select.cur), auto; font-size: 8px;
+    font-size: 8px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0; line-height: 1;
 }
@@ -215,6 +212,13 @@
 /*.stickies-titlebar { background: repeating-linear-gradient(to right, #888 0px, #888 1px, #cccc00 1px, #cccc00 3px) !important; }*/
 .maios-window.unfocused .stickies-titlebar, .stickies-titlebar {background: #ffff99}
 .stickies-title { color: #333 !important; text-shadow: none !important; }
+
+/* - SETTINGS -*/
+.settings-body { margin: 15px; font-family: 'Geneva'; }
+.settings-body h1 { text-align: center; }
+.settings-backgrounds { display: flex; flex-direction: row; flex: 1; justify-content: center; gap: 4%; border: solid black 1px; padding: 3%;}
+.settings-backgrounds img { width: 84px; height: auto; border-radius: 4%; border: solid black 1px; }
+.settings-backgrounds button { width: 100%; height: 100%; margin: 0; padding: 0; border: none; }
 
 
 /* ── NEWS ── */
@@ -255,7 +259,7 @@
     border: 1px solid #606060;
     box-shadow: inset 1px 1px 0 #e8e8e8, inset -1px -1px 0 #888;
     font-family: Geneva, monospace; font-size: 10px;
-    cursor: url("../../public/resources/cursors/windows-xp-silver-remastered-/Hand\ Select.cur"), auto; display: flex; align-items: center; gap: 4px;
+    display: flex; align-items: center; gap: 4px;
 }
 .taskbar-btn:active { box-shadow: inset -1px -1px 0 #e8e8e8, inset 1px 1px 0 #888; }
 .taskbar-right { margin-left: auto; font-family: Geneva, monospace; font-size: 10px; color: #fff; text-shadow: 0 -1px 0 #555; }
@@ -271,7 +275,7 @@
 .mobile-bar { background: repeating-linear-gradient(to right, #000 0px, #000 1px, #c0c0c0 1px, #c0c0c0 3px); height: 18px; display: flex; align-items: center; padding: 0 6px; font-size: 11px; font-weight: bold; color: #fff; text-shadow: 1px 1px 0 #000; }
 .mobile-body { padding: 16px; text-align: center; font-size: 12px; line-height: 1.6; background: #fff; margin: 4px; }
 .mobile-icon { font-size: 32px; margin-bottom: 8px; }
-.mobile-ok { display: block; margin: 8px auto 0; padding: 4px 24px; background: linear-gradient(to bottom, #e0e0e0, #c0c0c0); border: 2px solid #000; box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080; font-family: Geneva, monospace; font-size: 12px; cursor: pointer; }
+.mobile-ok { display: block; margin: 8px auto 0; padding: 4px 24px; background: linear-gradient(to bottom, #e0e0e0, #c0c0c0); border: 2px solid #000; box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080; font-family: Geneva, monospace; font-size: 12px; }
 
 /* ── SCROLLBAR ── */
 .maios-root ::-webkit-scrollbar { width: 14px; }

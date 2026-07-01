@@ -17,6 +17,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
     about:    { id: "about",    title: "About This OS",  open: false, x: 120, y: 50,  w: 360, zIndex: 51 },
     stickies: { id: "stickies", title: "Stickies",     open: false, x: 60,  y: 300, w: 220, zIndex: 50 },
     news:     { id: "news",     title: "resume.txt",  open: false, x: 540, y: 100, w: 400, zIndex: 50 },
+    dungeon:  { id: "dungeon",  title: "Dungeon Escape",  open: false, x: 350, y: 90,  w: 500, zIndex: 50 },
+    settings: { id: "settings", title: "Appearance", open: false, x: 400, y: 200, w: 600, zIndex: 50 }
     };
 
     // ─── SUB-COMPONENTS ────────────────────────────────────────────────────────
@@ -67,7 +69,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
                         onClick={onLogin}
                         style={{
                             display: "flex", alignItems: "center", gap: 10,
-                            padding: "6px 10px", cursor: "pointer",
+                            padding: "6px 10px",
                         }}
                         >
                         <span style={{ fontSize: 24 }}>🧸</span>
@@ -79,7 +81,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
                 <div style={{ display: "flex", gap: 44, marginTop: 8 }}>
                     <div
                         onClick={onShutdown}
-                        style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, cursor: "pointer" }}
+                        style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}
                     >
                         <div style={{
                             width: 34, height: 34,
@@ -115,6 +117,17 @@ import { useState, useEffect, useRef, useCallback } from "react";
     }
 
     function AboutContent() {
+        const [siteInfo, setSiteInfo] = useState(null);
+
+    useEffect(() => {
+    const url = "https://neocities.org/api/info?sitename=mai-os";
+    fetch(`https://corsproxy.io/?${encodeURIComponent(url)}`)
+        .then(r => r.json())
+        .then(data => setSiteInfo(data.info))
+        .catch(() => {});
+    }, []);
+
+
     return (
         <div className="about-inner">
         <div className="about-logo"><img src="/resources/favicons/CompactDisc.ico" alt="" />Mai<span>OS</span>1.0</div>
@@ -122,8 +135,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
             <b>Version:</b> Mai OS 1.0.0<br />
             <b>Tech Stack:</b> React<br />
             <b>Host Platform:</b> Neocities<br />
-            <b>Memory Used:</b> ...<br />
-            <b>Mai OS Users:</b> ...<br />
+            <b>Mai OS Users:</b> {siteInfo ? siteInfo.hits.toLocaleString() : "…"}<br />
+            <b>Last Updated:</b> {siteInfo ? new Date(siteInfo.last_updated).toLocaleDateString() : "…"}<br />
         </div>
         <div className="about-divider" />
         <div style={{ fontSize: 13, color: "#555", fontFamily: "Geneva, monospace", textAlign: "center" }}>
@@ -142,6 +155,44 @@ import { useState, useEffect, useRef, useCallback } from "react";
         📌 <s>drink coffee</s> ✓<br />
         📌 listen to that album<br /><br />
         <em style={{ color: "#888", fontSize: 14 }}>— note to self: get more sleep</em>
+        </div>
+    );
+    }
+
+    function DungeonEscape() {
+    return (
+        <div style={{ width: "100%", height: "100%" }}>
+            <iframe
+            src="https://maijagrimes.github.io/dungeon-escape-wasm/DungeonEscapeQt.html"
+            width="100%"
+            height="100%"
+            style={{ border: "none" }}
+            title="Dungeon Escape"
+            allow="cross-origin-isolated"
+            />
+        </div>
+    );
+    }
+
+    function SettingsContent({ openWindow, setWallpaper }) {
+    const wallpapers = [
+        { src: "/src/assets/images/Strawberry-Parabola.jpg",       alt: "Pink" },
+        { src: "/src/assets/images/Tangerine-Fusion.jpg",    alt: "Orange" },
+        { src: "/src/assets/images/Lime-Horizon.jpg", alt: "Green" },
+        { src: "/src/assets/images/Grape-Mission.jpg",   alt: "Purple" },
+        { src: "/src/assets/images/Blueberry-Union.jpg",   alt: "Blue" },
+    ];
+
+    return (
+        <div className="settings-body">
+            <h2>Background</h2>
+            <div className="settings-backgrounds">
+                {wallpapers.map(wp => (
+                <button key={wp.src} onClick={() => setWallpaper(wp.src)} type="button">
+                    <img src={wp.src} alt={wp.alt} />
+                </button>
+                ))}
+            </div>
         </div>
     );
     }
@@ -202,7 +253,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
     }
 
     // ─── WINDOW ────────────────────────────────────────────────────────────────
-    function Window({ win, isFront, onClose, onFocus, onDragStart, bodyStyle }) {
+    function Window({ win, isFront, onClose, onFocus, onDragStart, bodyStyle, openWindow, setWallpaper, setCursorStyle }) {
     const isStickies = win.id === "stickies";
 
     return (
@@ -222,6 +273,10 @@ import { useState, useEffect, useRef, useCallback } from "react";
             {win.id === "about"    && <AboutContent />}
             {win.id === "stickies" && <StickiesContent />}
             {win.id === "news"     && <NewsContent />}
+            {win.id === "dungeon"  && <DungeonEscape />}
+            {win.id === "settings" && <SettingsContent 
+                openWindow={openWindow} 
+                setWallpaper={setWallpaper} />}
         </div>
         </div>
     );
@@ -244,6 +299,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
     const [selectedIcon, setSelectedIcon] = useState(null);
     const [appleOpen, setAppleOpen] = useState(false);
     const [clock, setClock] = useState("");
+    const [wallpaper, setWallpaper] = useState("/src/assets/images/Strawberry-Parabola.jpg");
+    const [cursorStyle, setCursorStyle] = useState("/resources/cursors/windows-xp-silver-remastered-/XP Normal (Blue Flower).cur");
     const zCounter = useRef(60);
 
     // Shutdown state
@@ -391,10 +448,11 @@ import { useState, useEffect, useRef, useCallback } from "react";
     }
 
     const desktopIcons = [
-        { id: "about",    emoji: "💻", label: "About" },
-        { id: "news",     emoji: "🗒️", label: "resume.txt" },
-        { id: "stickies", emoji: "📒", label: "Stickies" },
-        { id: "trash",    emoji: "🗑️", label: "Trash",   action: null },
+        { id: "about",     emoji: "💻", label: "About" },
+        { id: "settings",  emoji: "⚙️", label: "Settings" },
+        { id: "news",      emoji: "🗒️", label: "resume.txt" },
+        { id: "stickies",  emoji: "📒", label: "Stickies" },
+        { id: "trash",     emoji: "🗑️", label: "Trash",   action: null },
     ];
 
     return (
@@ -509,7 +567,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
                         setBootPhase("login");
                         }}
                     style={{
-                    display: "flex", flexDirection: "column", alignItems: "center", gap: 4, cursor: "pointer",
+                    display: "flex", flexDirection: "column", alignItems: "center", gap: 4
                     }}
                 >
                     <div style={{
@@ -527,7 +585,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
         )} 
 
         {/* Desktop */}
-        <div className={`maios-desktop${desktopVisible ? " visible" : ""}`}>
+        <div className={`maios-desktop${desktopVisible ? " visible" : ""}`} style={{ backgroundImage: `url(${wallpaper})`, backgroundSize: "cover" }}>
 
             {/* Menu bar */}
             <div className="maios-menubar">
@@ -548,8 +606,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
             <div className="apple-dropdown" onClick={(e) => e.stopPropagation()}>
                 <div className="apple-menu-item" onClick={() => { openWindow("about"); setAppleOpen(false); }}>💻 About maiOS…</div>
                 <div className="apple-menu-sep" />
-                {/*<div className="apple-menu-item">📁 Maija's Files</div>
-                <div className="apple-menu-item">🎵 maiTunes</div>
+                <div className="apple-menu-item" onClick={() => { openWindow("settings"); setAppleOpen(false); }}>⚙️ Settings</div>
+                {/*<div className="apple-menu-item">🎵 maiTunes</div>
                 <div className="apple-menu-item">📷 Photos</div>*/}
                 <div className="apple-menu-sep" />
                 <div className="apple-menu-item" onClick={() => { setAppleOpen(false); setShowShutdownConfirm(true); }}>💤 Shutdown</div>
@@ -584,9 +642,14 @@ import { useState, useEffect, useRef, useCallback } from "react";
                     onClose={closeWindow}
                     onFocus={focusWindow}
                     onDragStart={startDrag}
+                    openWindow={openWindow}
+                    setWallpaper={setWallpaper}
+                    setCursorStyle={setCursorStyle}
                     bodyStyle={
                         win.id === "stickies" ? { margin: 0, border: "none", background: "#ffff99" } : 
                         win.id === "news" ? { height: 200, overflowY: "scroll" } :
+                        win.id === "dungeon"  ? { height: 350, minHeight: 350, padding: 0, overflow: "hidden", flex: "none" } :
+                        win.id === "settings" ? { height: 350 } :
                         undefined
                     }
                 />
@@ -610,5 +673,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
         <!--Apple Garamond font from: https://www.dafont.com/apple-garamond.font -->
         <!--old Mac cursors from: https://www.rw-designer.com/cursor-set/old-macos-win10-11#google_vignette -->
         <!--silver Windows cursors from: https://www.rw-designer.com/cursor-set/windows-xp-silver-remastered- -->
-            startup sound fx from : Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=103697">freesound_community</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=103697">Pixabay</a> */
+            startup sound fx from : Sound Effect by <a href="https://pixabay.com/users/freesound_community-46691455/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=103697">freesound_community</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=103697">Pixabay</a>
+            icon backgrounds from : https://basicappleguy.com/haberdashery/macintoshwallpapers */
 }

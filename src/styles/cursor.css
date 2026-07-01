@@ -1,0 +1,15 @@
+/* Flowers */
+.maios-root
+{ cursor: url("/resources/cursors/windows-xp/blue-flower.cur"), auto; }
+
+/* Button/Link Select */
+.login-box, .menubar-apple, .menu-item, .apple-menu-item, .desktop-icon, .window-close
+{ cursor: url("/resources/cursors/windows-xp/link.cur"), auto; }
+
+/* Move */
+.window-titlebar
+{ cursor: url("/resources/cursors/windows-xp/move.cur"), auto; }
+
+/* Vertical Move */
+::-webkit-scrollbar-track-piece
+{ cursor: url("/resources/cursors/windows-xp/vertical-resize.cur"), auto; }
