@@ -132,7 +132,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
         <div className="about-inner">
         <div className="about-logo"><img src="/resources/favicons/CompactDisc.ico" alt="" />Mai<span>OS</span>1.0</div>
         <div className="about-specs">
-            <b>Version:</b> Mai OS 1.0.0<br />
+            <b>Version:</b> Mai OS 1.0.1<br />
             <b>Tech Stack:</b> React<br />
             <b>Host Platform:</b> Neocities<br />
             <b>Mai OS Users:</b> {siteInfo ? siteInfo.hits.toLocaleString() : "…"}<br />

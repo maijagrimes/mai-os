@@ -10,6 +10,3 @@
 .window-titlebar
 { cursor: url("/resources/cursors/windows-xp/move.cur"), auto; }
 
-/* Vertical Move */
-::-webkit-scrollbar-track-piece
-{ cursor: url("/resources/cursors/windows-xp/vertical-resize.cur"), auto; }
